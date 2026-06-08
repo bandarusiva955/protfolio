@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bandaru Siva — Data Scientist & ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #1a1a2e;
+  --secondary: #16213e;
+  --accent1: #00d4ff;
+  --accent2: #ff006e;
+  --accent3: #3a86ff;
+  --accent4: #8338ec;
+  --text-light: #ffffff;
+  --text-muted: #b0b0b0;
+  --success: #06ffa5;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: var(--text-light);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+  animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent1);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 0, 110, 0.15), transparent);
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeUpBig 1s ease both;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--accent1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  animation: slideInUp 0.8s ease both;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  animation: slideInUp 1s ease both 0.2s;
+  animation-fill-mode: both;
+  background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 50%, var(--accent4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-role {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--accent1);
+  margin-bottom: 1.5rem;
+  animation: slideInUp 1s ease both 0.4s;
+  animation-fill-mode: both;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: slideInUp 1s ease both 0.6s;
+  animation-fill-mode: both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: slideInUp 1s ease both 0.8s;
+  animation-fill-mode: both;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent1), var(--accent4));
+  color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent1);
+  color: var(--accent1);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+@keyframes fadeUpBig {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator svg {
+  width: 30px;
+  height: 50px;
+  stroke: var(--accent1);
+  fill: none;
+  stroke-width: 2;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* Sections */
+section {
+  padding: 6rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+section.light-bg {
+  background: rgba(22, 33, 62, 0.5);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+/* About Section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+
+.about-text strong {
+  color: var(--accent1);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stat-box {
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-5px);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--accent1);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-card:hover {
+  border-color: var(--accent1);
+  transform: translateY(-8px) scale(1.05);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 110, 0.2));
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.skill-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* Analytics Section */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.analytics-card {
+  background: rgba(0, 212, 255, 0.05);
+  border-left: 4px solid var(--accent1);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.analytics-card:nth-child(2) {
+  border-left-color: var(--accent2);
+}
+
+.analytics-card:nth-child(3) {
+  border-left-color: var(--accent3);
+}
+
+.analytics-card:nth-child(4) {
+  border-left-color: var(--accent4);
+}
+
+.analytics-card:nth-child(5) {
+  border-left-color: var(--success);
+}
+
+.analytics-card:nth-child(6) {
+  border-left-color: var(--accent2);
+}
+
+.analytics-card:hover {
+  transform: translateX(10px);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.analytics-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.analytics-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-light);
+}
+
+.analytics-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.project-card {
+  position: relative;
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.project-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-num {
+  font-size: 0.75rem;
+  color: var(--accent1);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-light);
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--accent1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project-link {
+  color: var(--accent1);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.project-link:hover {
+  gap: 1rem;
+  color: var(--accent2);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 212, 255, 0.5);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 0, 110, 0.1));
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+}
+
+/* Experience Section */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent1), var(--accent2), var(--accent4));
+}
+
+.timeline-item {
+  padding-bottom: 3rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--accent1);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--accent1);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-light);
+}
+
+.timeline-org {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+  padding: 8rem 3rem;
+}
+
+.contact-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.contact-link {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact-link:hover {
+  border-color: var(--accent1);
+  background: rgba(0, 212, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+.highlight {
+  color: var(--accent1);
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .hero {
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .about-grid,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">BS.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#analytics">Analytics</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">🚀 Data Scientist & ML Engineer</div>
+    <h1 class="hero-name">Bandaru Siva</h1>
+    <p class="hero-role">Turning Data into Decisions</p>
+    <p class="hero-desc">
+      I build intelligent systems that extract actionable insights from complex datasets. Specializing in machine learning, predictive analytics, and AI-powered solutions.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView()">View My Work</button>
+      <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView()">Get in Touch</button>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg viewBox="0 0 30 50" preserveAspectRatio="none">
+      <polyline points="0,0 15,15 30,0" fill="none"></polyline>
+      <polyline points="0,15 15,30 30,15" fill="none"></polyline>
+      <polyline points="0,30 15,45 30,30" fill="none"></polyline>
+    </svg>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="light-bg">
+  <h2 class="section-title">About Me</h2>
+  <p class="section-subtitle">Aspiring data scientist with proven expertise in building real-world ML solutions</p>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm <strong>Bandaru Siva</strong>, a B.Tech Computer Science student specializing in <strong>machine learning</strong> and <strong>data science</strong>. I'm passionate about solving complex problems with data-driven approaches.
+      </p>
+      <p>
+        From building <strong>AI hiring agents</strong> that intelligently screen resumes using NLP, to predicting <strong>customer churn</strong> in telecom industries, to engineering features that improve model performance — I love working on projects that have real impact.
+      </p>
+      <p>
+        My expertise spans the full ML pipeline: exploratory data analysis, feature engineering, model selection, evaluation, and deployment. I believe in clean code, reproducible research, and solutions that actually work.
+      </p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat-box">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Shipped Projects</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">9</div>
+        <div class="stat-label">Core Skills</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">2026</div>
+        <div class="stat-label">B.Tech Graduation</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Curiosity Level</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+  <h2 class="section-title">My Toolkit</h2>
+  <p class="section-subtitle">Technologies I master and love working with</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">🐼</span><span class="skill-name">Pandas</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">🔢</span><span class="skill-name">NumPy</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">⚙️</span><span class="skill-name">Scikit-learn</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">📊</span><span class="skill-name">EDA</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">🔗</span><span class="skill-name">Feature Engineering</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">📈</span><span class="skill-name">Regression</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">🏷️</span><span class="skill-name">Classification</span></div>
+    <div class="skill-card reveal"><span class="skill-icon">🗃️</span><span class="skill-name">SQL</span></div>
+  </div>
+</section>
+
+<!-- Analytics Section -->
+<section id="analytics" class="light-bg">
+  <h2 class="section-title">Data Analytics Expertise</h2>
+  <p class="section-subtitle">Converting raw data into actionable business insights</p>
+  <div class="analytics-grid">
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">📊</div>
+      <div class="analytics-title">EDA & Data Wrangling</div>
+      <div class="analytics-desc">Deep exploratory analysis, statistical summaries, data quality assessment, and preparing messy data for modeling.</div>
+    </div>
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">📈</div>
+      <div class="analytics-title">Statistical Modeling</div>
+      <div class="analytics-desc">Regression analysis, hypothesis testing, probability distributions, and statistical inference for data-driven decisions.</div>
+    </div>
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">🔍</div>
+      <div class="analytics-title">Feature Engineering</div>
+      <div class="analytics-desc">Transform raw features into powerful predictors. Encoding, scaling, interactions, and domain-specific feature creation.</div>
+    </div>
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">📉</div>
+      <div class="analytics-title">Data Visualization</div>
+      <div class="analytics-desc">Tell compelling data stories with Matplotlib, Seaborn, Plotly. Interactive dashboards that communicate insights clearly.</div>
+    </div>
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">💾</div>
+      <div class="analytics-title">Database Querying</div>
+      <div class="analytics-desc">SQL expertise for extracting insights from databases. Complex joins, aggregations, and crafting analysis-ready datasets.</div>
+    </div>
+    <div class="analytics-card reveal">
+      <div class="analytics-icon">🎯</div>
+      <div class="analytics-title">Business Intelligence</div>
+      <div class="analytics-desc">Translating data insights into business recommendations. KPI tracking, cohort analysis, trend forecasting, and reporting.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-subtitle">Real-world machine learning solutions that demonstrate my capabilities</p>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-content">
+        <div class="project-num">PROJECT 01</div>
+        <h3 class="project-title">Autonomous AI Hiring Agent</h3>
+        <p class="project-desc">
+          Built an intelligent resume screening system using TF-IDF vectorization and graph-based analysis. Created a Streamlit dashboard that ranks candidates automatically, saving recruiters hours of manual work.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">TF-IDF</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Graph Analysis</span>
+        </div>
+        <a href="https://github.com/shivabandaru955" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-content">
+        <div class="project-num">PROJECT 02</div>
+        <h3 class="project-title">Telecom Customer Churn Prediction</h3>
+        <p class="project-desc">
+          Developed Logistic Regression and Random Forest models to predict customer churn. Applied advanced feature engineering and EDA to identify key churn drivers and achieve 85%+ accuracy.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Classification</span>
+          <span class="tag">EDA</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">Model Evaluation</span>
+        </div>
+        <a href="https://github.com/shivabandaru955" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-content">
+        <div class="project-num">PROJECT 03</div>
+        <h3 class="project-title">House Price Prediction Model</h3>
+        <p class="project-desc">
+          Built a robust regression model for real estate valuation. Implemented sophisticated feature engineering including polynomial features, interaction terms, and handled missing values strategically.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Regression</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">Scikit-learn</span>
+        </div>
+        <a href="https://github.com/shivabandaru955" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="light-bg">
+  <h2 class="section-title">Experience & Education</h2>
+  <p class="section-subtitle">My journey building data science expertise</p>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2022 — 2026 (Expected)</div>
+      <div class="timeline-title">B.Tech in Computer Science</div>
+      <div class="timeline-org">India</div>
+      <div class="timeline-desc">
+        Specializing in data science, machine learning, and software engineering. Completed advanced coursework in statistics, algorithms, and databases. Built multiple end-to-end ML projects during studies.
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2024 — Present</div>
+      <div class="timeline-title">Independent ML Engineering</div>
+      <div class="timeline-org">Self-directed Projects</div>
+      <div class="timeline-desc">
+        Designed and shipped 3 complete ML projects from problem definition to deployment. Built an AI hiring agent, developed customer churn prediction models, and engineered house price forecasting systems. Continuously learning and experimenting with cutting-edge techniques.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section light-bg">
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="contact-description">
+    I'm passionate about solving real-world problems with data and ML. Whether you have a project in mind, want to discuss data science, or just want to connect—I'd love to hear from you!
+  </p>
+  <div class="contact-links">
+    <a href="mailto:shivabandaru955@gmail.com" class="contact-link reveal">
+      <span>✉</span> Email
+    </a>
+    <a href="https://github.com/shivabandaru955" target="_blank" class="contact-link reveal">
+      <span>◈</span> GitHub
+    </a>
+    <a href="https://linkedin.com/in/shivabandaru955" target="_blank" class="contact-link reveal">
+      <span>in</span> LinkedIn
+    </a>
+    <a href="tel:+919550793592" class="contact-link reveal">
+      <span>☎</span> Call Me
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 <span class="highlight">Bandaru Siva</span> • Data Scientist • ML Engineer • Built with <span class="highlight">Code & Creativity</span></p>
+</footer>
+
+<script>
+// Scroll reveal animation
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('active');
+      }, 100);
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+reveals.forEach((reveal) => {
+  observer.observe(reveal);
+});
+
+// Stagger animation for cards
+const cards = document.querySelectorAll('.skill-card, .project-card, .analytics-card, .timeline-item, .stat-box');
+cards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.1}s`;
+});
+
+// Smooth scroll for buttons
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
